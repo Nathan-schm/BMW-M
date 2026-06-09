@@ -1,0 +1,653 @@
+.config-page {
+    padding-top: 80px;
+    background: #0a0a0a;
+    color: white;
+    min-height: 100vh;
+}
+
+.config-main {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 2rem;
+    padding-bottom: 140px; /* place pour la barre de récap */
+}
+
+.config-tag {
+    color: #1C69D4;
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin: 0 0 1.2rem;
+    font-weight: 500;
+}
+
+/* ===== Sélecteur de modèle ===== */
+.model-selector {
+    margin-bottom: 2.5rem;
+}
+
+.model-tabs {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.model-tab {
+    flex: 1;
+    min-width: 180px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: white;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.model-tab::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #1C69D4 33%, #E52222 33%, #E52222 66%, #0A1F5C 66%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.model-tab:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.model-tab.active {
+    background: rgba(28, 105, 212, 0.05);
+    border-color: rgba(28, 105, 212, 0.3);
+}
+
+.model-tab.active::before {
+    transform: scaleX(1);
+}
+
+.tab-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 3px;
+}
+
+.tab-price {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
+
+/* ===== Stage : visuel + options ===== */
+.config-stage {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* ===== Visuel voiture ===== */
+.car-preview {
+    position: sticky;
+    top: 100px;
+    background: #050505;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.car-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(ellipse at 50% 60%, rgba(28, 105, 212, 0.08) 0%, transparent 60%),
+        linear-gradient(180deg, #0f0f0f 0%, #050505 100%);
+}
+
+.car-wrap {
+    position: relative;
+    width: 90%;
+    height: 70%;
+    z-index: 1;
+}
+
+.car-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.car-tint {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    transition: background 0.5s ease, opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.car-tint.active {
+    opacity: 0.7;
+}
+
+.car-wrap.changing .car-img {
+    opacity: 0;
+    transform: scale(0.97);
+}
+
+.car-name-overlay {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.car-name-label {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+}
+
+.car-name-model {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 4px;
+    color: white;
+    line-height: 1;
+}
+
+.car-rotation-hint {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 2;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.8rem;
+}
+
+/* ===== Panneau options ===== */
+.options-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.option-group {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.8rem;
+}
+
+.option-header {
+    margin-bottom: 1.5rem;
+}
+
+.option-tag {
+    color: #1C69D4;
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0 0 0.4rem;
+    font-weight: 500;
+}
+
+.option-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin: 0 0 0.4rem;
+}
+
+.option-current {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    font-weight: 300;
+}
+
+/* ===== Couleurs ===== */
+.color-swatches {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+}
+
+.swatch {
+    aspect-ratio: 1;
+    border: 2px solid transparent;
+    background: var(--c);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 0;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.swatch::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+    pointer-events: none;
+}
+
+.swatch:hover { transform: scale(1.05); }
+
+.swatch.active::after {
+    border-color: #1C69D4;
+}
+
+/* ===== Jantes ===== */
+.wheel-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+}
+
+.wheel-opt {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.8rem 0.4rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.wheel-opt:hover { border-color: rgba(255, 255, 255, 0.3); }
+
+.wheel-opt.active {
+    border-color: #1C69D4;
+    background: rgba(28, 105, 212, 0.05);
+}
+
+.wheel-opt span {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.wheel-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #d0d0d0 30%, #6a6a6a 70%, #2a2a2a 100%);
+    position: relative;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.wheel-circle.dark {
+    background: radial-gradient(circle, #4a4a4a 30%, #2a2a2a 70%, #0a0a0a 100%);
+}
+
+.wheel-circle.carbon {
+    background: radial-gradient(circle, #1a1a1a 30%, #0a0a0a 70%, #000 100%);
+}
+
+.wheel-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #0a0a0a;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.wheel-spokes {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+}
+
+.wheel-spokes::before, .wheel-spokes::after {
+    content: '';
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.spokes-5::before {
+    top: 50%; left: 0; right: 0; height: 3px; transform: translateY(-50%);
+    box-shadow: 0 0 0 0 transparent;
+}
+.spokes-5::after {
+    top: 0; bottom: 0; left: 50%; width: 3px; transform: translateX(-50%) rotate(36deg);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.spokes-double::before, .spokes-double::after {
+    top: 50%; left: 0; right: 0; height: 2px;
+}
+.spokes-double::before { transform: translateY(-50%) rotate(0deg); box-shadow: 0 -4px 0 rgba(0,0,0,0.5), 0 4px 0 rgba(0,0,0,0.5); }
+.spokes-double::after { transform: translateY(-50%) rotate(60deg); box-shadow: 0 -4px 0 rgba(0,0,0,0.5), 0 4px 0 rgba(0,0,0,0.5); }
+
+.spokes-y::before {
+    top: 50%; left: 50%; width: 3px; height: 100%; background: rgba(0,0,0,0.6);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 transparent;
+}
+.spokes-y::after {
+    top: 50%; left: 50%; width: 3px; height: 100%; background: rgba(0,0,0,0.6);
+    transform: translate(-50%, -50%) rotate(60deg);
+    box-shadow: -3px 0 0 rgba(0,0,0,0.6), 3px 0 0 rgba(0,0,0,0.6);
+}
+
+.spokes-7::before {
+    top: 0; left: 50%; width: 2px; height: 100%; background: rgba(255,255,255,0.1);
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 transparent;
+}
+.spokes-7::after {
+    top: 0; left: 50%; width: 2px; height: 100%; background: rgba(255,255,255,0.1);
+    transform: translateX(-50%) rotate(51deg);
+}
+
+/* ===== Intérieur ===== */
+.interior-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+}
+
+.interior-opt {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.8rem 0.4rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+}
+
+.interior-opt:hover { border-color: rgba(255, 255, 255, 0.3); }
+.interior-opt.active {
+    border-color: #1C69D4;
+    background: rgba(28, 105, 212, 0.05);
+}
+
+.interior-swatch {
+    width: 100%;
+    height: 32px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.4);
+}
+
+.interior-opt span {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== Pack ===== */
+.pack-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.pack-opt {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.pack-opt:hover { border-color: rgba(255, 255, 255, 0.3); }
+.pack-opt.active {
+    border-color: #1C69D4;
+    background: rgba(28, 105, 212, 0.05);
+}
+
+.pack-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.pack-price {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1px;
+}
+
+/* ===== Récap fixe ===== */
+.config-summary {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 100;
+}
+
+.config-summary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #1C69D4 33%, #E52222 33%, #E52222 66%, #0A1F5C 66%);
+}
+
+.summary-content {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.summary-label {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    margin: 0 0 0.3rem;
+}
+
+.summary-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.summary-right {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.hero-btn.ghost {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.hero-btn.ghost::before { display: none; }
+
+.hero-btn.ghost:hover {
+    border-color: white;
+    color: white;
+}
+
+/* ===== Modal ===== */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.modal.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 500px;
+    width: 100%;
+    padding: 3rem;
+    position: relative;
+    transform: translateY(30px);
+    transition: transform 0.4s ease;
+}
+
+.modal.open .modal-content { transform: translateY(0); }
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #1C69D4 33%, #E52222 33%, #E52222 66%, #0A1F5C 66%);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.5rem;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.modal-close:hover { opacity: 1; }
+
+.modal-tag {
+    color: #1C69D4;
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0 0 0.6rem;
+}
+
+.modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    margin: 0 0 1.5rem;
+    letter-spacing: 3px;
+}
+
+.modal-recap {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.2rem 0;
+    margin-bottom: 1rem;
+}
+
+.recap-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+}
+
+.recap-line span:first-child { color: rgba(255, 255, 255, 0.5); letter-spacing: 1px; }
+.recap-line span:last-child { color: white; }
+
+.modal-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 1.5rem;
+}
+
+.modal-total span { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.modal-total strong {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+    .config-stage {
+        grid-template-columns: 1fr;
+    }
+    .car-preview {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .config-main { padding: 1rem; padding-bottom: 180px; }
+    .color-swatches, .wheel-options, .interior-options {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .summary-content { flex-direction: column; align-items: flex-start; }
+    .summary-right { width: 100%; }
+    .summary-right .hero-btn { flex: 1; justify-content: center; }
+    .car-name-model { font-size: 2rem; }
+    .modal-content { padding: 2rem 1.5rem; }
+}
+
+#threeCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap)" rel="stylesheet">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="configurateur.css">
+    <title>Configurateur BMW M</title>
+</head>
+<body class="config-page">
+
+    <header id="header">
+        <a href="index.html"><img src="media/img/Embleme-BMW.jpg" alt="logo BMW"></a>
+        <button class="burger" id="menu-burger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="nav">
+            <a href="index.html">Accueil</a>
+            <a href="#">M2</a>
+            <a href="#">M3</a>
+            <a href="#">M4</a>
+        </nav>
+    </header>
+
+    <main class="config-main">
+
+        <!-- Sélection du modèle -->
+        <section class="model-selector">
+            <p class="config-tag">Étape 1 — Choisissez votre modèle</p>
+            <div class="model-tabs">
+                <button class="model-tab active" data-model="m2">
+                    <span class="tab-name">M2</span>
+                    <span class="tab-price">dès CHF 89'900</span>
+                </button>
+                <button class="model-tab" data-model="m3">
+                    <span class="tab-name">M3</span>
+                    <span class="tab-price">dès CHF 112'500</span>
+                </button>
+                <button class="model-tab" data-model="m4">
+                    <span class="tab-name">M4</span>
+                    <span class="tab-price">dès CHF 118'900</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Zone principale : visuel + options -->
+        <section class="config-stage">
+
+            <!-- Visuel de la voiture -->
+            <div class="car-preview" id="carPreview">
+                <canvas id="threeCanvas"></canvas>
+                <div class="car-name-overlay">
+                    <span class="car-name-label">BMW</span>
+                    <span class="car-name-model" id="carModelName">M2</span>
+                </div>
+                <div class="car-rotation-hint">
+                    <span>Glisser pour pivoter</span>
+                </div>
+            </div>
+
+            <!-- Panneau d'options -->
+            <aside class="options-panel">
+
+                <!-- Couleur -->
+                <div class="option-group">
+                    <div class="option-header">
+                        <p class="option-tag">Étape 2</p>
+                        <h3 class="option-title">Couleur extérieure</h3>
+                        <p class="option-current" id="colorCurrent">Alpine White</p>
+                    </div>
+                    <div class="color-swatches" id="colorSwatches">
+                        <button class="swatch active" data-color="#f5f5f5" data-name="Alpine White" data-price="0" style="--c:#f5f5f5"></button>
+                        <button class="swatch" data-color="#0a0a0a" data-name="Sapphire Black" data-price="1200" style="--c:#0a0a0a"></button>
+                        <button class="swatch" data-color="#1C69D4" data-name="Portimao Blue" data-price="2400" style="--c:#1C69D4"></button>
+                        <button class="swatch" data-color="#E52222" data-name="Toronto Red" data-price="2400" style="--c:#E52222"></button>
+                        <button class="swatch" data-color="#4a8c3a" data-name="Isle of Man Green" data-price="3200" style="--c:#4a8c3a"></button>
+                        <button class="swatch" data-color="#d4a017" data-name="Speed Yellow" data-price="3200" style="--c:#d4a017"></button>
+                        <button class="swatch" data-color="#7a7a7a" data-name="Brooklyn Grey" data-price="1800" style="--c:#7a7a7a"></button>
+                        <button class="swatch" data-color="#2d1810" data-name="Tanzanite Blue" data-price="3500" style="--c:#2d1810"></button>
+                    </div>
+                </div>
+
+                <!-- Jantes -->
+                <div class="option-group">
+                    <div class="option-header">
+                        <p class="option-tag">Étape 3</p>
+                        <h3 class="option-title">Jantes</h3>
+                        <p class="option-current" id="wheelsCurrent">Style 826 M — 19"</p>
+                    </div>
+                    <div class="wheel-options" id="wheelOptions">
+                        <button class="wheel-opt active" data-wheel="826" data-name="Style 826 M — 19&quot;" data-price="0">
+                            <div class="wheel-circle">
+                                <div class="wheel-spokes spokes-5"></div>
+                            </div>
+                            <span>826 M</span>
+                        </button>
+                        <button class="wheel-opt" data-wheel="827" data-name="Style 827 M — 20&quot;" data-price="2800">
+                            <div class="wheel-circle">
+                                <div class="wheel-spokes spokes-double"></div>
+                            </div>
+                            <span>827 M</span>
+                        </button>
+                        <button class="wheel-opt" data-wheel="828" data-name="Style 828 M Forged — 20&quot;" data-price="4500">
+                            <div class="wheel-circle dark">
+                                <div class="wheel-spokes spokes-y"></div>
+                            </div>
+                            <span>828 M</span>
+                        </button>
+                        <button class="wheel-opt" data-wheel="829" data-name="Style 829 M Carbon — 20&quot;" data-price="6800">
+                            <div class="wheel-circle carbon">
+                                <div class="wheel-spokes spokes-7"></div>
+                            </div>
+                            <span>829 M</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Intérieur -->
+                <div class="option-group">
+                    <div class="option-header">
+                        <p class="option-tag">Étape 4</p>
+                        <h3 class="option-title">Intérieur Merino</h3>
+                        <p class="option-current" id="interiorCurrent">Noir</p>
+                    </div>
+                    <div class="interior-options" id="interiorOptions">
+                        <button class="interior-opt active" data-interior="black" data-name="Noir" data-price="0">
+                            <div class="interior-swatch" style="background: linear-gradient(135deg, #1a1a1a, #0a0a0a)"></div>
+                            <span>Noir</span>
+                        </button>
+                        <button class="interior-opt" data-interior="cognac" data-name="Cognac" data-price="2200">
+                            <div class="interior-swatch" style="background: linear-gradient(135deg, #b87333, #8b4513)"></div>
+                            <span>Cognac</span>
+                        </button>
+                        <button class="interior-opt" data-interior="silverstone" data-name="Silverstone" data-price="2500">
+                            <div class="interior-swatch" style="background: linear-gradient(135deg, #c0c0c0, #8a8a8a)"></div>
+                            <span>Silverstone</span>
+                        </button>
+                        <button class="interior-opt" data-interior="kyalami" data-name="Orange Kyalami" data-price="2800">
+                            <div class="interior-swatch" style="background: linear-gradient(135deg, #e85d04, #b34700)"></div>
+                            <span>Kyalami</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pack -->
+                <div class="option-group">
+                    <div class="option-header">
+                        <p class="option-tag">Étape 5</p>
+                        <h3 class="option-title">Pack additionnel</h3>
+                        <p class="option-current" id="packCurrent">Aucun</p>
+                    </div>
+                    <div class="pack-options" id="packOptions">
+                        <button class="pack-opt active" data-pack="none" data-name="Aucun" data-price="0">
+                            <span class="pack-name">Configuration standard</span>
+                            <span class="pack-price">Inclus</span>
+                        </button>
+                        <button class="pack-opt" data-pack="carbon" data-name="Pack Carbone M" data-price="5900">
+                            <span class="pack-name">Pack Carbone M</span>
+                            <span class="pack-price">+ CHF 5'900</span>
+                        </button>
+                        <button class="pack-opt" data-pack="track" data-name="Pack Track" data-price="8500">
+                            <span class="pack-name">Pack Track</span>
+                            <span class="pack-price">+ CHF 8'500</span>
+                        </button>
+                        <button class="pack-opt" data-pack="ultimate" data-name="Pack Ultimate M" data-price="14500">
+                            <span class="pack-name">Pack Ultimate M</span>
+                            <span class="pack-price">+ CHF 14'500</span>
+                        </button>
+                    </div>
+                </div>
+
+            </aside>
+        </section>
+
+        <!-- Récap fixe en bas -->
+        <section class="config-summary">
+            <div class="summary-content">
+                <div class="summary-left">
+                    <p class="summary-label">Total estimé</p>
+                    <p class="summary-price">CHF <span id="totalPrice">89'900</span></p>
+                </div>
+                <div class="summary-right">
+                    <button class="hero-btn small ghost" id="resetBtn">
+                        <span>Réinitialiser</span>
+                    </button>
+                    <button class="hero-btn small" id="validateBtn">
+                        <span>Valider ma configuration</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal de validation -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose">×</button>
+                <p class="modal-tag">Configuration enregistrée</p>
+                <h2 class="modal-title">Votre BMW <span id="modalModel">M2</span></h2>
+                <div class="modal-recap" id="modalRecap"></div>
+                <div class="modal-total">
+                    <span>Total</span>
+                    <strong>CHF <span id="modalPrice">89'900</span></strong>
+                </div>
+                <button class="hero-btn">
+                    <span>Demander une offre</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+    <script type="module" src="three-viewer.js"></script>
+    <script type="module" src="configurateur.js"></script>
+</body>
+</html>

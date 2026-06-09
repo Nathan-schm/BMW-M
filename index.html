@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap)" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="media/img/logo_bmw.jpg" rel="icon" type="image/png">
+    <title>BMW M — Configurateur</title>
+</head>
+<body>
+    <header id="header">
+        <a href=""><img src="media/img/Embleme-BMW.jpg" alt="logo BMW"></a>    
+        <button class="burger" id="menu-burger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="nav">
+            <a href="#">M2</a>
+            <a href="#">M3</a>
+            <a href="#">M4</a>
+            <a href="#">M5</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="media/vid/m3.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <div class="hero-sub-wrap">
+                    <span class="hero-bar"></span>
+                    <p class="hero-sub">Configurateur BMW M</p>
+                </div>
+                <h1 class="hero-title">
+                    <span class="line">L'excellence</span>
+                    <span class="line">à votre image.</span>
+                </h1>
+                <p class="hero-desc">Composez la BMW M qui vous ressemble. Chaque détail, sublimé.</p>
+                <a href="#suite" class="hero-btn">
+                    <span>Configurer ma BMW</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <div class="scroll-btn" id="scrollBtn">
+                <span class="scroll-text">Découvrir</span>
+                <span class="scroll-line"></span>
+            </div>
+        </section>
+
+        <section id="suite" class="models">
+            <div class="models-header reveal">
+                <p class="models-tag">Choisissez votre modèle</p>
+                <h2 class="models-title">LA GAMME M</h2>
+                <p class="models-intro">Trois caractères. Une même obsession : la performance pure.</p>
+            </div>
+
+            <article class="model-card reveal">
+                <div class="model-num">01</div>
+                <div class="model-img">
+                    <img src="media/img/m2.jpg" alt="BMW M2">
+                    <div class="model-img-overlay"></div>
+                </div>
+                <div class="model-info">
+                    <p class="model-tag">Entrée de gamme M</p>
+                    <h3 class="model-name">M2</h3>
+                    <p class="model-desc">La plus agile de la gamme. Compacte, incisive, redoutable sur circuit.</p>
+                    <div class="model-stats">
+                        <div class="stat"><span class="stat-val" data-target="460" data-suffix=" ch">0</span><span class="stat-label">Puissance</span></div>
+                        <div class="stat"><span class="stat-val" data-target="4.1" data-suffix=" s" data-decimal="1">0</span><span class="stat-label">0-100 km/h</span></div>
+                        <div class="stat"><span class="stat-val" data-target="285" data-suffix=" km/h">0</span><span class="stat-label">Vmax</span></div>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price">À partir de <strong>CHF 89'900</strong></span>
+                        <button class="hero-btn" onclick="window.location.href='configurateur.html?model=m3'"><span>Configurer</span></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="model-card reverse reveal">
+                <div class="model-num">02</div>
+                <div class="model-img">
+                    <img src="media/img/m3.jpg" alt="BMW M3">
+                    <div class="model-img-overlay"></div>
+                </div>
+                <div class="model-info">
+                    <p class="model-tag">La berline M</p>
+                    <h3 class="model-name">M3</h3>
+                    <p class="model-desc">Berline haute performance. L'équilibre parfait entre confort et dynamisme.</p>
+                    <div class="model-stats">
+                        <div class="stat"><span class="stat-val" data-target="510" data-suffix=" ch">0</span><span class="stat-label">Puissance</span></div>
+                        <div class="stat"><span class="stat-val" data-target="3.9" data-suffix=" s" data-decimal="1">0</span><span class="stat-label">0-100 km/h</span></div>
+                        <div class="stat"><span class="stat-val" data-target="290" data-suffix=" km/h">0</span><span class="stat-label">Vmax</span></div>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price">À partir de <strong>CHF 112'500</strong></span>
+                        <button class="hero-btn" onclick="window.location.href='configurateur.html?model=m3'"><span>Configurer</span></button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="model-card reveal">
+                <div class="model-num">03</div>
+                <div class="model-img">
+                    <img src="media/img/m4.jpg" alt="BMW M4">
+                    <div class="model-img-overlay"></div>
+                </div>
+                <div class="model-info">
+                    <p class="model-tag">Le coupé M</p>
+                    <h3 class="model-name">M4</h3>
+                    <p class="model-desc">Le coupé de référence. Design tranchant, performances extrêmes.</p>
+                    <div class="model-stats">
+                        <div class="stat"><span class="stat-val" data-target="510" data-suffix=" ch">0</span><span class="stat-label">Puissance</span></div>
+                        <div class="stat"><span class="stat-val" data-target="3.9" data-suffix=" s" data-decimal="1">0</span><span class="stat-label">0-100 km/h</span></div>
+                        <div class="stat"><span class="stat-val" data-target="290" data-suffix=" km/h">0</span><span class="stat-label">Vmax</span></div>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price">À partir de <strong>CHF 118'900</strong></span>
+                        <button class="hero-btn" onclick="window.location.href='configurateur.html?model=m3'"><span>Configurer</span></button>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <footer class="footer">
+            <div class="footer-stripe"></div>
+            <div class="footer-content">
+                <p class="footer-tag">BMW M — Sheer Driving Pleasure</p>
+                <p class="footer-copy">© 2026 BMW Configurateur. Tous droits réservés.</p>
+            </div>
+        </footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
