@@ -374,6 +374,7 @@ nav.open {
     text-align: center;
     padding: 7rem 2rem 5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: radial-gradient(ellipse 620px 360px at 50% 42%, rgba(28, 105, 212, 0.18), transparent 70%);
 }
 
 .models-tag {
@@ -621,3 +622,205 @@ nav.open {
     .hero-title { font-size: 3rem; }
     .model-stats { gap: 1rem; }
 }
+
+/* ============ NAV OVERLAY (mobile menu backdrop) ============ */
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 140;
+}
+.nav-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Logo link keeps the rotating-image hover intact */
+.logo-link {
+    display: inline-flex;
+    line-height: 0;
+}
+
+/* ============ PREMIUM SHOWCASE ============ */
+.premium-showcase {
+    position: relative;
+    background: #0a0a0a;
+    padding: 7rem 2rem 8rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.premium-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 900px;
+    height: 900px;
+    max-width: 120vw;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(28, 105, 212, 0.14) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.premium-header {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+    margin: 0 auto 4rem;
+}
+
+.premium-tag {
+    color: #1C69D4;
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 0 0 1rem;
+}
+
+.premium-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    color: white;
+    letter-spacing: 3px;
+    margin: 0 0 1.2rem;
+}
+
+.premium-intro {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.premium-cards {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.premium-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 2.5rem 2rem;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+}
+
+.premium-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #1C69D4 33%, #E52222 33%, #E52222 66%, #0A1F5C 66%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.premium-box:hover {
+    transform: translateY(-6px);
+    border-color: rgba(28, 105, 212, 0.35);
+    background: rgba(28, 105, 212, 0.04);
+}
+
+.premium-box:hover::before { transform: scaleX(1); }
+
+.premium-icon {
+    width: 34px;
+    height: 34px;
+    color: #1C69D4;
+    margin-bottom: 1.5rem;
+}
+
+.premium-box h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: white;
+    margin: 0 0 0.8rem;
+}
+
+.premium-box p {
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .premium-cards { grid-template-columns: 1fr; max-width: 480px; }
+    .premium-showcase { padding: 5rem 1.5rem 6rem; }
+}
+
+/* ============ ACCESSIBILITY ============ */
+:focus-visible {
+    outline: 2px solid #1C69D4;
+    outline-offset: 3px;
+}
+
+.premium-ctas {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.8rem;
+}
+
+/* ============ SHARED GAME CONTROLS (Launch Control + Duel) ============ */
+.launch-btn {
+    padding: 18px 44px;
+    font-size: 0.8rem;
+    opacity: 1;
+    animation: none;
+}
+
+.launch-btn[disabled] { opacity: 0.5; cursor: default; }
+.launch-btn[disabled]::before { transform: translateX(-101%) !important; }
+
+.sound-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.45);
+    padding: 12px 20px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.65rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.sound-toggle svg { width: 18px; height: 18px; }
+.sound-toggle .wave { transition: opacity 0.2s ease; }
+
+.sound-toggle.is-on { color: #1C69D4; border-color: rgba(28, 105, 212, 0.4); }
+.sound-toggle:not(.is-on) .wave { opacity: 0.15; }
+
+.hero-btn.ghost {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+}
+.hero-btn.ghost::before { display: none; }
+.hero-btn.ghost:hover { border-color: white; color: white; }

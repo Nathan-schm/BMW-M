@@ -3,30 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap)" rel="stylesheet">
+    <meta name="description" content="Configurez votre BMW M (M2, M3, M4) : couleur, jantes, intérieur Merino et packs performance, avec aperçu 3D en temps réel.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:title" content="BMW M — Configurateur">
+    <meta property="og:description" content="Composez la BMW M qui vous ressemble. Aperçu 3D, couleurs, jantes et packs M.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="media/img/m3.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="media/img/logo_bmw.jpg" rel="icon" type="image/png">
+    <link href="media/img/logo_bmw.jpg" rel="icon" type="image/jpeg">
     <title>BMW M — Configurateur</title>
 </head>
 <body>
     <header id="header">
-        <a href=""><img src="media/img/Embleme-BMW.jpg" alt="logo BMW"></a>    
-        <button class="burger" id="menu-burger" aria-label="Menu">
+        <a href="index.html" class="logo-link"><img src="media/img/Embleme-BMW.jpg" alt="Accueil — BMW M"></a>    
+        <button class="burger" id="menu-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav">
             <span></span>
             <span></span>
             <span></span>
         </button>
         <nav id="nav">
-            <a href="#">M2</a>
-            <a href="#">M3</a>
-            <a href="#">M4</a>
-            <a href="#">M5</a>
-        </nav>
+    <a href="index.html">Accueil</a>
+    <a href="performance.html">Launch Control</a>
+    <a href="duel.html">Duel</a>
+    <a href="configurateur.html?model=m2">M2</a>
+    <a href="configurateur.html?model=m3">M3</a>
+    <a href="configurateur.html?model=m4">M4</a>
+</nav>
     </header>
+
+    <div class="nav-overlay" id="navOverlay" hidden></div>
 
     <main>
         <section class="hero">
-            <video autoplay muted loop playsinline class="hero-video">
+            <video autoplay muted loop playsinline preload="metadata" poster="media/img/m3.jpg" class="hero-video">
                 <source src="media/vid/m3.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
@@ -63,7 +75,7 @@
             <article class="model-card reveal">
                 <div class="model-num">01</div>
                 <div class="model-img">
-                    <img src="media/img/m2.jpg" alt="BMW M2">
+                    <img src="media/img/m2.jpg" alt="BMW M2" loading="lazy" decoding="async">
                     <div class="model-img-overlay"></div>
                 </div>
                 <div class="model-info">
@@ -77,7 +89,7 @@
                     </div>
                     <div class="model-footer">
                         <span class="model-price">À partir de <strong>CHF 89'900</strong></span>
-                        <button class="hero-btn" onclick="window.location.href='configurateur.html?model=m3'"><span>Configurer</span></button>
+                        <button class="hero-btn" onclick="window.location.href='configurateur.html?model=m2'"><span>Configurer</span></button>
                     </div>
                 </div>
             </article>
@@ -85,7 +97,7 @@
             <article class="model-card reverse reveal">
                 <div class="model-num">02</div>
                 <div class="model-img">
-                    <img src="media/img/m3.jpg" alt="BMW M3">
+                    <img src="media/img/m3.jpg" alt="BMW M3" loading="lazy" decoding="async">
                     <div class="model-img-overlay"></div>
                 </div>
                 <div class="model-info">
@@ -107,7 +119,7 @@
             <article class="model-card reveal">
                 <div class="model-num">03</div>
                 <div class="model-img">
-                    <img src="media/img/m4.jpg" alt="BMW M4">
+                    <img src="media/img/m4.jpg" alt="BMW M4" loading="lazy" decoding="async">
                     <div class="model-img-overlay"></div>
                 </div>
                 <div class="model-info">
@@ -121,19 +133,56 @@
                     </div>
                     <div class="model-footer">
                         <span class="model-price">À partir de <strong>CHF 118'900</strong></span>
-                        <button class="hero-btn" onclick="window.location.href='configurateur.html?model=m3'"><span>Configurer</span></button>
+                        <button class="hero-btn" onclick="window.location.href='configurateur.html?model=m4'"><span>Configurer</span></button>
                     </div>
                 </div>
             </article>
         </section>
-        <footer class="footer">
+        
+    
+<section class="premium-showcase reveal">
+    <div class="premium-glow"></div>
+    <div class="premium-header">
+        <p class="premium-tag">L'expérience M</p>
+        <h2 class="premium-title">Conçue dans le détail</h2>
+        <p class="premium-intro">Un configurateur immersif pensé pour révéler le caractère de chaque modèle.</p>
+        <div class="premium-ctas">
+            <a href="performance.html" class="hero-btn small">
+                <span>Launch Control</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="duel.html" class="hero-btn small">
+                <span>Duel 400 m</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+    <div class="premium-cards">
+        <div class="premium-box">
+            <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            <h3>Aperçu 3D</h3>
+            <p>Faites pivoter votre BMW à 360°. Chaque teinte et chaque jante, rendues en temps réel.</p>
+        </div>
+        <div class="premium-box">
+            <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2 4.5 12.5h6L11 22l8.5-10.5h-6L13 2Z"/></svg>
+            <h3>Performance</h3>
+            <p>Une interface rapide et fluide, à la hauteur des machines qu'elle met en scène.</p>
+        </div>
+        <div class="premium-box">
+            <svg class="premium-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M3 7.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5M3 7.5v9M21 7.5v9"/></svg>
+            <h3>Personnalisation</h3>
+            <p>Couleurs, jantes, intérieur Merino et packs M : composez la configuration qui vous ressemble.</p>
+        </div>
+    </div>
+</section>
+</main>
+<footer class="footer">
             <div class="footer-stripe"></div>
             <div class="footer-content">
                 <p class="footer-tag">BMW M — Sheer Driving Pleasure</p>
                 <p class="footer-copy">© 2026 BMW Configurateur. Tous droits réservés.</p>
             </div>
         </footer>
-    </main>
     <script src="script.js"></script>
 </body>
 </html>

@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Configurez votre BMW M en 3D : couleur, jantes, intérieur et pack performance, avec prix en temps réel.">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="media/img/logo_bmw.jpg" rel="icon" type="image/jpeg">
     <script type="importmap">
     {
         "imports": {
@@ -19,17 +24,21 @@
 <body class="config-page">
 
     <header id="header">
-        <a href="index.html"><img src="media/img/Embleme-BMW.jpg" alt="logo BMW"></a>
-        <button class="burger" id="menu-burger" aria-label="Menu">
+        <a href="index.html" class="logo-link"><img src="media/img/Embleme-BMW.jpg" alt="Accueil — BMW M"></a>
+        <button class="burger" id="menu-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav">
             <span></span><span></span><span></span>
         </button>
         <nav id="nav">
-            <a href="index.html">Accueil</a>
-            <a href="#">M2</a>
-            <a href="#">M3</a>
-            <a href="#">M4</a>
-        </nav>
+    <a href="index.html">Accueil</a>
+    <a href="performance.html">Launch Control</a>
+    <a href="duel.html">Duel</a>
+    <a href="configurateur.html?model=m2">M2</a>
+    <a href="configurateur.html?model=m3">M3</a>
+    <a href="configurateur.html?model=m4">M4</a>
+</nav>
     </header>
+
+    <div class="nav-overlay" id="navOverlay" hidden></div>
 
     <main class="config-main">
 

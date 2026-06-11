@@ -1,0 +1,22 @@
+VRAIS SONS MOTEUR — mode d'emploi
+=================================
+
+Le site utilise par défaut une synthèse temps réel d'un 6-en-ligne
+(ordres moteur, distorsion, crépitements au passage de rapport).
+
+Pour utiliser de VRAIS enregistrements à la place, dépose ici :
+
+    m2.mp3   (ou m2.wav)
+    m3.mp3   (ou m3.wav)
+    m4.mp3   (ou m4.wav)
+
+Format attendu : une boucle moteur à régime stable (~4000 tr/min),
+de 2 à 10 secondes, qui boucle proprement (début = fin).
+Le site la détecte automatiquement et cale le pitch sur le régime
+(de l'idle à la zone rouge). Aucun code à modifier.
+
+Où trouver des sons utilisables légalement :
+- tes propres enregistrements (téléphone près de l'échappement, régime stable) ;
+- des banques de sons sous licence libre ou achetée (cherche
+  "engine loop" / "inline 6 onboard loop" sur les banques d'effets sonores).
+Évite d'extraire l'audio de vidéos en ligne : c'est protégé par le droit d'auteur.

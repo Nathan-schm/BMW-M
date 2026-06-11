@@ -1,18 +1,31 @@
 // ===== Burger menu =====
 const btn = document.getElementById('menu-burger');
 const nav = document.getElementById('nav');
+const navOverlay = document.getElementById('navOverlay');
+
+function setMenu(open) {
+    btn.classList.toggle('open', open);
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    if (navOverlay) {
+        navOverlay.classList.toggle('open', open);
+        navOverlay.hidden = !open;
+    }
+    document.body.style.overflow = open ? 'hidden' : '';
+}
 
 if (btn && nav) {
-    btn.addEventListener('click', () => {
-        btn.classList.toggle('open');
-        nav.classList.toggle('open');
-    });
+    btn.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
 
     nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            btn.classList.remove('open');
-            nav.classList.remove('open');
-        });
+        link.addEventListener('click', () => setMenu(false));
+    });
+
+    if (navOverlay) navOverlay.addEventListener('click', () => setMenu(false));
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav.classList.contains('open')) setMenu(false);
     });
 }
 

@@ -1,0 +1,338 @@
+/* ============ DUEL 400 M ============ */
+.duel-page {
+    padding-top: 80px;
+    background:
+        radial-gradient(ellipse 1000px 600px at 50% -5%, rgba(229, 34, 34, 0.10), transparent 70%),
+        radial-gradient(ellipse 800px 500px at 15% 30%, rgba(28, 105, 212, 0.08), transparent 70%),
+        #0a0a0a;
+    color: white;
+    min-height: 100vh;
+}
+
+.duel-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+}
+
+#nav a.active { color: #1C69D4; }
+
+/* ===== Intro ===== */
+.duel-intro { text-align: center; margin-bottom: 3rem; }
+
+.perf-sub-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+.perf-bar { width: 40px; height: 1px; background: #1C69D4; }
+.perf-sub {
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #1C69D4;
+    font-weight: 500;
+    margin: 0;
+}
+
+.duel-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    letter-spacing: 3px;
+    line-height: 1;
+    margin: 0 0 1rem;
+}
+
+.duel-lead {
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-weight: 300;
+    font-size: 0.95rem;
+}
+
+/* ===== Setup ===== */
+.duel-setup {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.picker-label {
+    font-size: 0.62rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0 0 0.6rem;
+    font-weight: 500;
+}
+
+.picker-tabs { display: flex; gap: 0.5rem; }
+
+.pick-tab {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    color: white;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.pick-tab:hover { border-color: rgba(255, 255, 255, 0.3); }
+.pick-tab.active {
+    border-color: rgba(28, 105, 212, 0.5);
+    background: rgba(28, 105, 212, 0.08);
+}
+
+.vs-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: #E52222;
+    padding-bottom: 0.45rem;
+}
+
+/* ===== Stage ===== */
+.duel-stage-wrap { margin-bottom: 2rem; }
+
+.duel-hud {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 0.4rem;
+    flex-wrap: wrap;
+}
+
+.hud-name {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.hud-you { color: #1C69D4; font-weight: 600; }
+
+.hud-speed { font-size: 0.7rem; letter-spacing: 2px; color: rgba(255, 255, 255, 0.45); }
+.hud-speed strong {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: white;
+    font-weight: 400;
+    margin-right: 4px;
+}
+
+.hud-reaction {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.35rem 0.8rem;
+}
+.hud-reaction strong { font-weight: 600; }
+.hud-reaction.good strong { color: #1fd65a; }
+.hud-reaction.mid strong { color: #ff9500; }
+.hud-reaction.slow strong { color: #E52222; }
+
+.hud-finish {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* ===== Strip ===== */
+.duel-stage {
+    position: relative;
+    background: #050505;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.duel-stage::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, #1C69D4 33%, #E52222 33%, #E52222 66%, #0A1F5C 66%);
+    z-index: 3;
+}
+
+.strip { display: block; width: 100%; height: auto; }
+
+.headlight { opacity: 0.25; transition: opacity 0.3s ease; }
+.duel-stage.running .headlight {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
+}
+
+/* Arbre horizontal */
+.tree-h {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.5rem 0.8rem;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 2;
+}
+
+.tree-h .lamp {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.06s ease, box-shadow 0.06s ease;
+}
+.tree-h .lamp.amber.on { background: #ff9500; box-shadow: 0 0 14px 3px rgba(255, 149, 0, 0.8); }
+.tree-h .lamp.green.on { background: #1fd65a; box-shadow: 0 0 16px 4px rgba(31, 214, 90, 0.85); }
+.tree-h.fault .lamp { background: #E52222; box-shadow: 0 0 12px 2px rgba(229, 34, 34, 0.7); }
+
+/* Flash photo-finish */
+.photo-flash {
+    position: absolute;
+    inset: 0;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 4;
+}
+.photo-flash.go { animation: flashHit 0.35s ease-out; }
+@keyframes flashHit {
+    0% { opacity: 0.85; }
+    100% { opacity: 0; }
+}
+
+/* L'attribut hidden doit gagner sur display:flex */
+.duel-banner[hidden],
+.false-start[hidden],
+.hud-reaction[hidden] { display: none; }
+
+/* Bannière résultat */
+.duel-banner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+    z-index: 5;
+    animation: bannerIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+@keyframes bannerIn {
+    from { opacity: 0; transform: scale(1.04); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.banner-verdict {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 9vw, 5.5rem);
+    letter-spacing: 8px;
+    margin: 0 0 0.4rem;
+    line-height: 1;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+.banner-verdict::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 70%; height: 3px;
+    background: linear-gradient(90deg, #1C69D4 33%, #E52222 33%, #E52222 66%, #0A1F5C 66%);
+}
+.banner-verdict.win { color: #1fd65a; }
+.banner-verdict.lose { color: #E52222; }
+
+.banner-detail {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0.8rem 0 0;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+/* Faux départ */
+.false-start {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(120, 8, 8, 0.55);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+    animation: bannerIn 0.3s ease;
+}
+.fs-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    letter-spacing: 6px;
+    color: #fff;
+    margin: 0 0 0.4rem;
+    text-shadow: 0 0 24px rgba(229, 34, 34, 0.9);
+}
+.fs-detail {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+}
+
+.stage-hint {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0;
+    z-index: 2;
+    white-space: nowrap;
+}
+.stage-hint strong { color: rgba(255, 255, 255, 0.7); }
+
+/* ===== Controls ===== */
+.duel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+    .duel-main { padding: 2rem 1rem 4rem; }
+    .duel-setup { gap: 1rem; }
+    .vs-badge { width: 100%; text-align: center; padding: 0; order: 2; }
+    .picker { order: 1; }
+    .picker:last-of-type { order: 3; }
+    .pick-tab { padding: 0.5rem 1rem; font-size: 1.2rem; }
+    .hud-speed strong { font-size: 1.2rem; }
+    .stage-hint { font-size: 0.55rem; }
+}

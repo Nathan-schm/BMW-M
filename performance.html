@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Launch Control BMW M : simulez un départ arrêté en temps réel sur le combiné numérique. Chrono 0–100, 0–200 et 400 m, son moteur et meilleur temps.">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="performance.css">
+    <link href="media/img/logo_bmw.jpg" rel="icon" type="image/jpeg">
+    <title>BMW M — Launch Control</title>
+</head>
+<body class="perf-page">
+
+    <header id="header">
+        <a href="index.html" class="logo-link"><img src="media/img/Embleme-BMW.jpg" alt="Accueil — BMW M"></a>
+        <button class="burger" id="menu-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="nav">
+            <a href="index.html">Accueil</a>
+            <a href="performance.html" class="active">Launch Control</a>
+            <a href="duel.html">Duel</a>
+            <a href="configurateur.html?model=m2">M2</a>
+            <a href="configurateur.html?model=m3">M3</a>
+            <a href="configurateur.html?model=m4">M4</a>
+        </nav>
+    </header>
+
+    <div class="nav-overlay" id="navOverlay" hidden></div>
+
+    <main class="perf-main">
+
+        <section class="perf-intro reveal">
+            <div class="perf-sub-wrap">
+                <span class="perf-bar"></span>
+                <p class="perf-sub">Launch Control</p>
+            </div>
+            <h1 class="perf-title">0 → V-MAX</h1>
+            <p class="perf-lead">Choisissez votre M, armez le départ et lisez la performance brute sur le combiné. Le chrono ne ment pas.</p>
+        </section>
+
+        <section class="perf-tabs-wrap reveal">
+            <div class="perf-tabs" id="perfTabs">
+                <button class="perf-tab active" data-model="m2">
+                    <span class="perf-tab-name">M2</span>
+                    <span class="perf-tab-spec">460 ch · 285 km/h</span>
+                </button>
+                <button class="perf-tab" data-model="m3">
+                    <span class="perf-tab-name">M3</span>
+                    <span class="perf-tab-spec">510 ch · 290 km/h</span>
+                </button>
+                <button class="perf-tab" data-model="m4">
+                    <span class="perf-tab-name">M4</span>
+                    <span class="perf-tab-spec">510 ch · 290 km/h</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="cluster reveal">
+
+            <div class="gauge-block">
+                <svg class="gauge" id="tachGauge" viewBox="0 0 320 320" role="img" aria-label="Compte-tours">
+                    <defs>
+                        <linearGradient id="tachGrad" x1="0" y1="1" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#1C69D4"/>
+                            <stop offset="55%" stop-color="#1C69D4"/>
+                            <stop offset="100%" stop-color="#E52222"/>
+                        </linearGradient>
+                    </defs>
+                    <path class="gauge-track" id="tachTrack"></path>
+                    <path class="gauge-redline" id="tachRedline"></path>
+                    <path class="gauge-fill" id="tachFill" stroke="url(#tachGrad)"></path>
+                    <g id="tachTicks"></g>
+                    <g id="tachLabels"></g>
+                    <text class="gauge-big" id="tachBig" x="160" y="150">0</text>
+                    <text class="gauge-cap" id="tachCap" x="160" y="176">tr/min</text>
+                    <line class="needle" id="tachNeedle" x1="160" y1="160" x2="160" y2="56"></line>
+                    <circle class="hub" cx="160" cy="160" r="8"></circle>
+                </svg>
+                <p class="gauge-label">Régime moteur</p>
+            </div>
+
+            <div class="cluster-center">
+                <div class="staging-tree" id="tree" aria-hidden="true">
+                    <span class="lamp amber"></span>
+                    <span class="lamp amber"></span>
+                    <span class="lamp amber"></span>
+                    <span class="lamp green"></span>
+                </div>
+                <div class="gear-display">
+                    <span class="gear-label">Rapport</span>
+                    <span class="gear-num" id="gearNum">N</span>
+                </div>
+                <div class="chrono">
+                    <span class="chrono-label">Chrono</span>
+                    <span class="chrono-row"><span class="chrono-val" id="chrono">0.00</span><span class="chrono-unit">s</span></span>
+                </div>
+            </div>
+
+            <div class="gauge-block">
+                <svg class="gauge" id="speedGauge" viewBox="0 0 320 320" role="img" aria-label="Vitesse">
+                    <defs>
+                        <linearGradient id="speedGrad" x1="0" y1="1" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#1C69D4"/>
+                            <stop offset="55%" stop-color="#1C69D4"/>
+                            <stop offset="100%" stop-color="#E52222"/>
+                        </linearGradient>
+                    </defs>
+                    <path class="gauge-track" id="speedTrack"></path>
+                    <path class="gauge-redline" id="speedRedline"></path>
+                    <path class="gauge-fill" id="speedFill" stroke="url(#speedGrad)"></path>
+                    <g id="speedTicks"></g>
+                    <g id="speedLabels"></g>
+                    <text class="gauge-big" id="speedBig" x="160" y="150">0</text>
+                    <text class="gauge-cap" id="speedCap" x="160" y="176">km/h</text>
+                    <line class="needle" id="speedNeedle" x1="160" y1="160" x2="160" y2="56"></line>
+                    <circle class="hub" cx="160" cy="160" r="8"></circle>
+                </svg>
+                <p class="gauge-label">Vitesse</p>
+            </div>
+        </section>
+
+        <section class="perf-controls reveal">
+            <button class="hero-btn launch-btn" id="launchBtn">
+                <span id="launchLabel">Armer le départ</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+            <button class="hero-btn small ghost" id="resetBtn"><span>Réinitialiser</span></button>
+            <button class="sound-toggle is-on" id="soundToggle" aria-pressed="true" aria-label="Activer ou couper le son moteur">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="wave" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+                <span>Son moteur</span>
+            </button>
+        </section>
+
+        <section class="results reveal">
+            <div class="result-card" id="card100">
+                <span class="result-label">0 – 100 km/h</span>
+                <span class="result-val" id="r100">—</span>
+            </div>
+            <div class="result-card" id="card200">
+                <span class="result-label">0 – 200 km/h</span>
+                <span class="result-val" id="r200">—</span>
+            </div>
+            <div class="result-card" id="card400">
+                <span class="result-label">400 mètres</span>
+                <span class="result-val" id="r400">—</span>
+            </div>
+            <div class="result-card" id="cardVmax">
+                <span class="result-label">Pointe atteinte</span>
+                <span class="result-val" id="rvmax">—</span>
+            </div>
+            <div class="result-best">
+                <span class="best-label">Meilleur 0–100 · <span id="bestModel">M2</span></span>
+                <strong class="best-time" id="bestTime">—</strong>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-stripe"></div>
+        <div class="footer-content">
+            <p class="footer-tag">BMW M — Sheer Driving Pleasure</p>
+            <p class="footer-copy">© 2026 BMW Configurateur. Valeurs simulées à but démonstratif.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="engine-audio.js"></script>
+    <script src="performance.js"></script>
+</body>
+</html>
