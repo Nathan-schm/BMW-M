@@ -1,10 +1,5 @@
-import { loadModel, applyColor, applyWheelColor, applyPack, applyInterior } from './three-viewer.js';
+import { loadModel, applyColor, applyWheelColor, applyPack, applyInterior, focusInterior } from './three-viewer.js';
 
-const urlParams = new URLSearchParams(window.location.search);
-const initialModel = urlParams.get('model');
-if (initialModel && ['m2','m3','m4'].includes(initialModel)) {
-    document.querySelector(`.model-tab[data-model="${initialModel}"]`).click();
-}
 
 const config = {
     model: 'm2',
@@ -70,6 +65,7 @@ document.querySelectorAll('.swatch').forEach(swatch => {
         colorCurrent.textContent = name + (price > 0 ? ` (+ CHF ${formatPrice(price)})` : '');
 
         applyColor(hex);
+        focusInterior(false);
         updateTotal();
     });
 });
@@ -90,7 +86,7 @@ document.querySelectorAll('.wheel-opt').forEach(opt => {
         // Change la couleur des jantes sur le modèle 3D
         const color = wheelColors[wheel] || '#cccccc';
         applyWheelColor(color);
-
+        focusInterior(false);
         updateTotal();
     });
 });
@@ -108,7 +104,8 @@ document.querySelectorAll('.interior-opt').forEach(opt => {
         config.interior = { name, price };
         interiorCurrent.textContent = name + (price > 0 ? ` (+ CHF ${formatPrice(price)})` : '');
 
-        applyInterior(interior);  // ← ajoute ça
+        applyInterior(interior);
+        focusInterior(true);   // ← zoom + éclaire
         updateTotal();
     });
 });
@@ -127,6 +124,7 @@ document.querySelectorAll('.pack-opt').forEach(opt => {
         packCurrent.textContent = name + (price > 0 ? ` (+ CHF ${formatPrice(price)})` : '');
 
         applyPack(pack);  // ← ajoute ça
+        focusInterior(false);
         updateTotal();
     });
 });
@@ -167,3 +165,10 @@ document.getElementById('modalClose').addEventListener('click', () => modal.clas
 modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
 
 updateTotal();
+
+// Modèle initial : lu depuis l'URL (?model=m2|m3|m4), sinon M2.
+// Placé ici, APRÈS l'enregistrement des gestionnaires de clic, pour que le clic déclenche bien loadModel().
+const urlParams = new URLSearchParams(window.location.search);
+const requestedModel = urlParams.get('model');
+const initialModel = ['m2', 'm3', 'm4'].includes(requestedModel) ? requestedModel : 'm2';
+document.querySelector(`.model-tab[data-model="${initialModel}"]`).click();

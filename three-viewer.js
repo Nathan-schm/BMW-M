@@ -61,6 +61,7 @@ controls.addEventListener('end', () => {
 
 const loader = new GLTFLoader();
 let carModel = null;
+let loadGen = 0;
 let currentColor = null;
 let baseModelY = 0;
 let currentPack = 'none';
@@ -93,6 +94,7 @@ const packEffects = {
 };
 
 function loadModel(modelKey) {
+    const myGen = ++loadGen;
     if (carModel) {
         scene.remove(carModel);
         carModel = null;
@@ -103,6 +105,7 @@ function loadModel(modelKey) {
     loader.load(
         modelFiles[modelKey],
         (gltf) => {
+            if (myGen !== loadGen) return; // chargement obsolète : on ignore
             carModel = gltf.scene;
 
             const box = new THREE.Box3().setFromObject(carModel);
@@ -313,6 +316,36 @@ function applyInterior(interiorKey) {
     });
 }
 
+// Ajoute une lumière intérieure dédiée
+const interiorLight = new THREE.PointLight(0xffffff, 0, 3);
+interiorLight.position.set(0, 1, 0);
+scene.add(interiorLight);
+
+let interiorMode = false;
+
+function focusInterior(active) {
+    if (active === interiorMode) return;  // ← si déjà dans le bon mode, fait rien
+    interiorMode = active;
+
+    if (active) {
+        controls.autoRotate = false;
+        camera.position.set(1.5, 1.2, 2);
+        controls.target.set(0, 0.5, 0);
+        controls.minDistance = 1;
+        controls.maxDistance = 4;
+        interiorLight.intensity = 8;
+        ambientLight.intensity = 4;
+    } else {
+        camera.position.set(5, 2, 6);
+        controls.target.set(0, 0, 0);
+        controls.minDistance = 3;
+        controls.maxDistance = 12;
+        controls.autoRotate = true;
+        interiorLight.intensity = 0;
+        ambientLight.intensity = 1.8;
+    }
+    controls.update();
+}
 
 window.addEventListener('resize', () => {
     camera.aspect = container.clientWidth / container.clientHeight;
@@ -327,6 +360,4 @@ function animate() {
 }
 animate();
 
-loadModel('m2');
-
-export { loadModel, applyColor, applyWheelColor, applyPack, applyInterior };
+export { loadModel, applyColor, applyWheelColor, applyPack, applyInterior, focusInterior };

@@ -167,7 +167,7 @@ window.MEngineAudio = (function () {
         osc.frequency.value = (o && o.freq) || 110;
         const g = c.createGain();
         const vol = (o && o.vol) || 0.18, dur = (o && o.dur) || 0.3;
-        g.gain.setValueAtTime(vol, c.currentTime);
+        g.gain.setValueAtTime(vol, c.currentTime);3
         g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + dur);
         osc.connect(g); g.connect(c.destination);
         osc.start(); osc.stop(c.currentTime + dur + 0.02);

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="L'histoire de BMW M : née en 1972 de la compétition, la signature tricolore, les modèles légendaires et l'esprit Motorsport.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:title" content="BMW M — L'histoire">
+    <meta property="og:description" content="50 ans d'obsession motorsport : la signature tricolore, du M1 aux M2, M3 et M4.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="media/img/m3.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="histoire.css">
+    <link href="media/img/logo_bmw.jpg" rel="icon" type="image/jpeg">
+    <title>BMW M — L'histoire</title>
+</head>
+<body class="histoire-page">
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <header id="header">
+        <a href="index.html" class="logo-link"><img src="media/img/Embleme-BMW.jpg" alt="Accueil — BMW M"></a>
+        <button class="burger" id="menu-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="nav">
+            <a href="index.html">Accueil</a>
+            <a href="histoire.html" class="active">Histoire</a>
+            <a href="performance.html">Launch Control</a>
+            <a href="duel.html">Duel</a>
+            <a href="configurateur.html?model=m2">M2</a>
+            <a href="configurateur.html?model=m3">M3</a>
+            <a href="configurateur.html?model=m4">M4</a>
+        </nav>
+    </header>
+
+    <div class="nav-overlay" id="navOverlay" hidden></div>
+
+    <main>
+
+        <!-- ===== HERO ===== -->
+        <section class="h-hero">
+            <div class="h-hero-glow"></div>
+            <svg class="m-emblem" viewBox="0 0 360 180" role="img" aria-label="Emblème BMW M">
+                <g class="stripes">
+                    <polygon class="stripe s1" points="30,150 56,150 91,30 65,30" fill="#1C69D4"/>
+                    <polygon class="stripe s2" points="64,150 90,150 125,30 99,30" fill="#0A1F5C"/>
+                    <polygon class="stripe s3" points="98,150 124,150 159,30 133,30" fill="#E52222"/>
+                </g>
+                <text class="m-letter" x="180" y="150">M</text>
+            </svg>
+
+            <div class="h-hero-text">
+                <h1 class="h-hero-title">Plus qu'une lettre.</h1>
+                <p class="h-hero-sub">Depuis 1972, trois bandes de couleur racontent la même histoire :
+                    celle de la compétition transposée sur la route.</p>
+            </div>
+
+            <a href="#manifeste" class="h-scroll-cue" aria-label="Faire défiler">
+                <span>Découvrir</span>
+                <span class="cue-line"></span>
+            </a>
+        </section>
+
+        <!-- ===== MANIFESTE ===== -->
+        <section id="manifeste" class="h-manifeste reveal">
+            <p class="h-kicker">Le mythe M</p>
+            <p class="h-manifeste-text">
+                Au commencement, il y a la piste. Une poignée d'ingénieurs réunis pour gagner des courses,
+                qui finissent par réinventer ce qu'une voiture de route peut être.
+                <span class="hl">« M » comme Motorsport</span> — et comme une promesse jamais reniée :
+                aucune ligne, aucun réglage, aucun compromis qui ne serve la conduite.
+            </p>
+        </section>
+
+        <!-- ===== SIGNATURE TRICOLORE ===== -->
+        <section class="h-signature reveal">
+            <div class="h-sig-left">
+                <p class="h-kicker">La signature</p>
+                <h2 class="h-section-title">Trois couleurs,<br>une légende</h2>
+                <p class="h-section-text">
+                    Le bleu clair pour BMW et la Bavière. Le rouge pour l'esprit course.
+                    Et le bleu nuit qui relie les deux. Depuis plus de cinquante ans,
+                    cette bande tricolore habille les modèles les plus désirables de la marque —
+                    un sceau que l'on reconnaît avant même de lire le badge.
+                </p>
+            </div>
+            <div class="h-sig-bars" aria-hidden="true">
+                <div class="sig-bar"><span class="sig-fill b1"></span><span class="sig-cap">Bleu clair</span></div>
+                <div class="sig-bar"><span class="sig-fill b2"></span><span class="sig-cap">Bleu nuit</span></div>
+                <div class="sig-bar"><span class="sig-fill b3"></span><span class="sig-cap">Rouge</span></div>
+            </div>
+        </section>
+
+        <!-- ===== CHIFFRES ===== -->
+        <section class="h-figures reveal">
+            <div class="h-fig">
+                <span class="h-fig-num stat-val" data-target="1972">0</span>
+                <span class="h-fig-label">L'année zéro</span>
+            </div>
+            <div class="h-fig">
+                <span class="h-fig-num stat-val" data-target="50" data-suffix="+">0</span>
+                <span class="h-fig-label">Ans d'avance</span>
+            </div>
+            <div class="h-fig">
+                <span class="h-fig-num stat-val" data-target="100" data-suffix="%">0</span>
+                <span class="h-fig-label">Motorsport</span>
+            </div>
+            <div class="h-fig">
+                <span class="h-fig-num accent">0</span>
+                <span class="h-fig-label">Compromis</span>
+            </div>
+        </section>
+
+        <!-- ===== TIMELINE ===== -->
+        <section class="h-timeline">
+            <div class="h-tl-head reveal">
+                <p class="h-kicker">L'héritage</p>
+                <h2 class="h-section-title">De la piste à ton garage</h2>
+            </div>
+
+            <div class="timeline">
+                <span class="tl-spine" aria-hidden="true"></span>
+
+                <article class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">1972</div>
+                    <div class="tl-card">
+                        <h3>Naissance de BMW Motorsport</h3>
+                        <p>Une petite division dédiée à la course voit le jour. Sa mission tient en un mot : gagner.
+                            Tout le reste en découlera.</p>
+                    </div>
+                </article>
+
+                <article class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">1978</div>
+                    <div class="tl-card">
+                        <h3>BMW M1</h3>
+                        <p>La première M de route. Silhouette dessinée par Giugiaro, moteur six-cylindres en position
+                            centrale : une supercar née d'un programme de compétition.</p>
+                    </div>
+                </article>
+
+                <article class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">1986</div>
+                    <div class="tl-card">
+                        <h3>BMW M3 (E30)</h3>
+                        <p>Conçue pour homologuer une voiture de tourisme, elle deviendra l'une des plus victorieuses
+                            de l'histoire en compétition. La légende M est lancée.</p>
+                    </div>
+                </article>
+
+                <article class="tl-item reveal">
+                    <div class="tl-dot now"></div>
+                    <div class="tl-year">Aujourd'hui</div>
+                    <div class="tl-card">
+                        <h3>M2 · M3 · M4</h3>
+                        <p>L'héritage course, sur route ouverte. Trois caractères, une même obsession —
+                            et ce sont précisément celles que tu peux composer ici.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== PILIERS ===== -->
+        <section class="h-pillars-wrap">
+            <div class="h-tl-head reveal">
+                <p class="h-kicker">L'esprit M</p>
+                <h2 class="h-section-title">Trois piliers</h2>
+            </div>
+            <div class="h-pillars reveal stagger">
+                <div class="pillar">
+                    <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2 4.5 12.5h6L11 22l8.5-10.5h-6L13 2Z"/></svg>
+                    <h3>Puissance</h3>
+                    <p>Des moteurs hauts en régime, taillés pour délivrer leur énergie encore et encore, sans faiblir.</p>
+                </div>
+                <div class="pillar">
+                    <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>
+                    <h3>Précision</h3>
+                    <p>Châssis, direction, freins : chaque réglage affûté sur les circuits les plus exigeants du monde.</p>
+                </div>
+                <div class="pillar">
+                    <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9Z"/></svg>
+                    <h3>Passion</h3>
+                    <p>Plus qu'une mécanique : un état d'esprit, partagé par celles et ceux qui prennent le volant.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CTA ===== -->
+        <section class="h-cta reveal">
+            <div class="h-cta-stripe" aria-hidden="true"></div>
+            <h2 class="h-cta-title">À ton tour d'écrire la suite.</h2>
+            <p class="h-cta-text">Compose ta M, mesure ses chronos, défie une rivale.</p>
+            <div class="h-cta-btns">
+                <a href="configurateur.html?model=m3" class="hero-btn">
+                    <span>Configurer ma M</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </a>
+                <a href="performance.html" class="hero-btn small"><span>Launch Control</span></a>
+                <a href="duel.html" class="hero-btn small"><span>Duel 400 m</span></a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-stripe"></div>
+        <div class="footer-content">
+            <p class="footer-tag">BMW M — Sheer Driving Pleasure</p>
+            <p class="footer-copy">© 2026 BMW Configurateur. Page hommage à but démonstratif.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="histoire.js"></script>
+</body>
+</html>

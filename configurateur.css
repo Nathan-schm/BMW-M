@@ -79,8 +79,17 @@
 
 .tab-name {
     font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.tab-model {
     font-size: 2rem;
     letter-spacing: 3px;
+    color: white;
+    display: inline;
+    margin-right: 0.3rem;
 }
 
 .tab-price {
